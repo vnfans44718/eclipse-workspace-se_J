@@ -2,7 +2,7 @@ package lang;
 
 public class ObjectMain {
 
-	public static void main(String[] args) {
+	public static void main(StringCreateCompareMain[] args) {
 		Object o1 = new Object();
 		Object o2 = new Object();
 		Object o3 = o1;

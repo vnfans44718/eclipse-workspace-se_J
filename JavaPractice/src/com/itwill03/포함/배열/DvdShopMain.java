@@ -23,7 +23,7 @@ public class DvdShopMain {
 		 * - Dvd를 3개까지 대여할수있다.
 		 */
 
-		Dvd[] Dvds=m1.getDvds();
+	
 		
 		Dvd[] Dvds = { dvd1, dvd2, null, null };
 		m1.rentDvds(Dvds);

@@ -26,8 +26,8 @@ public class BookLibraryMain {
 		*/
 
 		member1.setRent(book);
-		member1.getRent();
 
+		
 		/*
 		 * 회원정보출력(회원정보와 회원이 빌린책들 정보출력)
 		 */

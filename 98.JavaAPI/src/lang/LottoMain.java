@@ -2,7 +2,7 @@ package lang;
 
 public class LottoMain {
 
-	public static void main(String[] args) {
+	public static void main(StringCreateCompareMain[] args) {
 		System.out.println("----------로또번호 6개 생성 [중복번호 허용안됨]");
 		int[] lottoNumber = { 0, 0, 0, 0, 0, 0 };
 		/*
