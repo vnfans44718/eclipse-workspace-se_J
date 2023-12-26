@@ -100,11 +100,11 @@ public class AccountService {
 	 * 3.은행계좌들 총잔고 출력메쏘드 정의
 	 */
 	public void totBalancePrint() {
-		for (Account totBalanceAccount : accounts) {
-			System.out.println(totBalanceAccount.getBalance());
-
+		int totBalnce = 0;
+		for (int i = 0; i < accounts.length; i++) {
+			totBalnce += accounts[i].getBalance();
 		}
-
+		System.out.println(totBalnce);
 	}
 
 	/*
@@ -196,7 +196,7 @@ public class AccountService {
 	/*
 	 10.계좌를 잔고순으로 오름차순정렬
 	 */
-	public void sortByBalanceAscending() {
+	/*public void sortByBalanceAscending() {
 		for (int i = 0; i < accounts.length - 1; i++) {
 			for (int j = 0; j < accounts.length - 1 - i; j++) {
 				int balance1 = accounts[j].getBalance();
@@ -209,7 +209,7 @@ public class AccountService {
 			}
 		}
 
-	}
+	}*/
 
 	/*
 	 11.계좌를 잔고순으로 내림차순정렬

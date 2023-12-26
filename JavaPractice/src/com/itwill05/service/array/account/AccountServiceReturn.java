@@ -1,7 +1,5 @@
 package com.itwill05.service.array.account;
 
-import java.util.Iterator;
-
 /*
  * 1.계좌객체들(Account[]) 을멤버변수로가진다.
  * 2.계좌객체들을 사용해서 업무실행
@@ -89,41 +87,100 @@ public class AccountServiceReturn {
 	 * 4.계좌번호를 인자로받아서 계좌객체주소 한개반환
 	 */
 	public Account findByNo(int no) {
+		Account findAccount = null; // for 문 안에서 새로운 변수 선언시 밖에서 먼저 초기화해야함
 		for (Account account : accounts) {
 			if (account.getNo() == no) {
-		     account.toString();
-			
-			if (account.toString() instanceof Account) {
-				
+				findAccount = account;
+				break;
 			}
-		
 		}
-		
-	}}
+		return findAccount;
+
+	}
 
 	/*
 	 * 5.계좌잔고 인자로받아서 잔고이상인 계좌배열객체 참조변수반환
 	 */
+
 	public Account[] findByBalance(int balance) {
 		/*
 		 * A. 만족하는 객체의갯수구하기 - 예를들어 3개라면
 		 */
+		int count = 0;
+		for (Account account : accounts) {
+			if (account.getBalance() > balance) {
+				count++;
+			}
 
-		/*
-		 * B. Account객체배열생성 
-		 * 	- findAccounts=new Account[3];
-		 */
-		/*
-		 * C. 만족하는Account객체들 Account배열에담기
-		 */
-		return null;
+		}
+
+		Account[] findAccounts = new Account[count];
+		int findCount = 0;
+		for (Account account : accounts) {
+			if (account.getBalance() > balance) {
+				findAccounts[findCount] = account;
+				findCount++;
+			}
+
+		}
+		return findAccounts;
+
 	}
+
+	/*int count = 0;
+	Account[] findAccounts = null;
+	for (Account account : accounts) {
+		if (account.getBalance() > balance) {
+			count++;
+		}
+		findAccounts = new Account[count];
+	
+		for (int i = 0; i < findAccounts.length; i++) {
+			for (int j = 0; j < accounts.length; j++) {
+				if (accounts[i].getBalance() > balance) {
+					findAccounts[i] = accounts[i];
+				}
+			}
+	
+		}
+		
+	}
+	
+	return findAccounts;
+	}*/
+
+	/*
+	 * B. Account객체배열생성 
+	 * 	- findAccounts=new Account[3];
+	 */
+
+	/*
+	 * C. 만족하는Account객체들 Account배열에담기
+	 */
 
 	/*
 	 * 6.계좌이율인자로받아서 인자이상인 계좌들배열객체 참조변수반환
 	 */
 	public Account[] findByIyul(double iyul) {
-		return null;
+
+		int count = 0;
+		for (Account account : accounts) {
+			if (account.getIyul() > iyul) {
+				count++;
+			}
+
+		}
+
+		Account[] findAccounts = new Account[count];
+		int findCount = 0;
+		for (Account account : accounts) {
+			if (account.getIyul() > iyul) {
+				findAccounts[findCount] = account;
+				findCount++;
+			}
+
+		}
+		return findAccounts;
 	}
 
 	/*
@@ -152,8 +209,16 @@ public class AccountServiceReturn {
 		 * 2.입금
 		 * 3.입금계좌 참조변수반환
 		 */
+		Account ipGumAccount = null;
+		for (Account account : accounts) {
+			if (account.getNo() == no) {
+				account.deposit(m);
+				ipGumAccount = account;
+			}
 
-		return null;
+		}
+
+		return ipGumAccount;
 
 	}
 
@@ -162,15 +227,24 @@ public class AccountServiceReturn {
 	 */
 	public Account chulGum(int no, int m) {
 
-		return null;
+		Account chulGumAccount = null;
+		for (Account account : accounts) {
+			if (account.getNo() == no) {
+				account.withDraw(m);
+				chulGumAccount = account;
+			}
+
+		}
+
+		return chulGumAccount;
+
 	}
 
-	/*
+	/*[option]
 	 * 10,11 정렬  standard --> 1:번호,2:이름,3:잔고,4:이율 
 	 *             order    --> 1:오름차순,2:내림차순
 	 */
 	public void sort(int standard, int order) {
-
 	}
 
 	/*
@@ -178,13 +252,25 @@ public class AccountServiceReturn {
 	 */
 	public void updateAccount(Account updateAccount) {
 
+		for (Account account : accounts) {
+			if (account.getNo() == updateAccount.getNo()) {
+				account = updateAccount;
+			}
+
+		}
+
 	}
 
 	/*
 	 * 13.번호,이름,잔고,이율 인자로받아서 계좌객체수정(update)[OPTION]
 	 */
 	public void updateAccount(int no, String owner, int balance, double iyul) {
+		for (Account account : accounts) {
+			if (account.getNo() == no) {
+				account.setAccountData(no, owner, balance, iyul);
+			}
 
+		}
 	}
 
 	/*
@@ -195,8 +281,28 @@ public class AccountServiceReturn {
 	 *  
 	 */
 	public Account deleteByNo(int no) {
+		Account temp = new Account(0, null, 0, 0);
+		for (int i = 0; i < accounts.length; i++) {
+			if (accounts[i].getNo() == no) {
+				temp.setAccountData(accounts[i].getNo(), accounts[i].getOwner(), accounts[i].getBalance(),
+						accounts[i].getIyul());
+				accounts[i] = null;
+				break;
+			}
 
-		return null;
+		}
+		Account[] account2 = new Account[accounts.length - 1];
+		for (int i = 0; i < accounts.length - 1; i++) {
+			if (accounts[i] != null) {
+				account2[i] = accounts[i];
+			} else {
+				account2[i] = accounts[i + 1];
+				accounts[i + 1] = null;
+			}
+		}
+		accounts = account2;
+
+		return temp;
 	}
 
 }

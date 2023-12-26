@@ -19,27 +19,47 @@ public class AccountServiceReturnMain {
 		findAccount=accountServiceReturn.findByNo(1113);
 		findAccount.print();
 		System.out.println("5.AccountServiceReturn객체야 계좌잔고를 인자로줄께 잔고이상인 계좌객체배열 참조변수반환해줘");
-		System.out.println("6.AccountServiceReturn객체야 계좌이율(5.0)을 인자로줄께 이율이상인 계좌객체배열 참조변수 반환해줘");
+		
+		Account[] saccounts=accountServiceReturn.findByBalance(56000);
+		for (int i = 0; i < saccounts.length; i++) {
+			saccounts[i].print();
+		}
+		
+		/*System.out.println("6.AccountServiceReturn객체야 계좌이율(5.0)을 인자로줄께 이율이상인 계좌객체배열 참조변수 반환해줘");
+		
+		
 		System.out.println("7.AccountServiceReturn객체야 계좌주이름(AIM)을 인자로줄께 계좌객체배열 참조변수 반환해줘");
 		Account[] accounts=accountServiceReturn.findByName("AIM");
 		for (int i = 0; i < accounts.length; i++) {
 			accounts[i].print();
-		}
+		}*/
 		System.out.println("8.AccountServiceReturn객체야 계좌번호(6666번)와 입금할돈(4000원)줄께 입금해줘");
 		Account ipGumAccount=accountServiceReturn.ipGum(6666, 4444);
 		ipGumAccount.print();
 		System.out.println("9.AccountServiceReturn객체야 계좌번호(1111번)와 출금할돈(500원)줄께 출금해줘");
+		Account chulGumAccount=accountServiceReturn.chulGum(6666, 4444);
+		chulGumAccount.print();
+		
 		/*
 		정렬기준(standard) --> 1:번호,2:이름,3:잔고,4:이율 
 	    정렬방법(order)    --> 1:오름차순,2:내림차순
 		 */
-		System.out.println("10.AccountServiceReturn객체야 계좌를 잔고순으로 오름차순정렬해줘");
+		
+		/*System.out.println("10.AccountServiceReturn객체야 계좌를 잔고순으로 오름차순정렬해줘");
 		accountServiceReturn.sort(3, 1);
+		accountServiceReturn.print();
+		
+		
 		System.out.println("11.AccountServiceReturn객체야 계좌를 잔고순으로 내림차순정렬해줘");
-		accountServiceReturn.sort(3, 2);
+		accountServiceReturn.sort(3, 2);*/
 		System.out.println("12.AccountServiceReturn야 계좌객체줄께 이름,잔고,이율 수정(update)해줘");
+		
 		System.out.println("13.AccountServiceReturn야 계좌데이타줄께 이름,잔고,이율 수정(update)해줘");
 		System.out.println("14.AccountServiceReturn객체야 계좌번호줄께 계좌삭제한후 삭제한계좌객체반환해줘[OPTION]");
+		accountServiceReturn.deleteByNo(6666);
+		System.out.println();
+		accountServiceReturn.print();
+		
 		
 	}
 
