@@ -25,14 +25,18 @@ public class AccountServiceReturnMain {
 			saccounts[i].print();
 		}
 		
-		/*System.out.println("6.AccountServiceReturn객체야 계좌이율(5.0)을 인자로줄께 이율이상인 계좌객체배열 참조변수 반환해줘");
-		
+		System.out.println("6.AccountServiceReturn객체야 계좌이율(5.0)을 인자로줄께 이율이상인 계좌객체배열 참조변수 반환해줘");
+		Account[] findByIyulAccounts=accountServiceReturn.findByIyul(5.0);
+		for (int i = 0; i < findByIyulAccounts.length; i++) {
+			findByIyulAccounts[i].print();
+		}
 		
 		System.out.println("7.AccountServiceReturn객체야 계좌주이름(AIM)을 인자로줄께 계좌객체배열 참조변수 반환해줘");
-		Account[] accounts=accountServiceReturn.findByName("AIM");
-		for (int i = 0; i < accounts.length; i++) {
-			accounts[i].print();
-		}*/
+		Account[] findByNameAccounts=accountServiceReturn.findByName("AIM");
+		for (int i = 0; i < findByNameAccounts.length; i++) {
+			findByNameAccounts[i].print();
+		}
+		
 		System.out.println("8.AccountServiceReturn객체야 계좌번호(6666번)와 입금할돈(4000원)줄께 입금해줘");
 		Account ipGumAccount=accountServiceReturn.ipGum(6666, 4444);
 		ipGumAccount.print();
@@ -53,13 +57,16 @@ public class AccountServiceReturnMain {
 		System.out.println("11.AccountServiceReturn객체야 계좌를 잔고순으로 내림차순정렬해줘");
 		accountServiceReturn.sort(3, 2);*/
 		System.out.println("12.AccountServiceReturn야 계좌객체줄께 이름,잔고,이율 수정(update)해줘");
-		
-		System.out.println("13.AccountServiceReturn야 계좌데이타줄께 이름,잔고,이율 수정(update)해줘");
-		System.out.println("14.AccountServiceReturn객체야 계좌번호줄께 계좌삭제한후 삭제한계좌객체반환해줘[OPTION]");
-		accountServiceReturn.deleteByNo(6666);
-		System.out.println();
+		Account update2 =new Account(3333, "sim", 40000, 2.2);
+		accountServiceReturn.updateAccount(update2);
 		accountServiceReturn.print();
-		
+		System.out.println("13.AccountServiceReturn야 계좌데이타줄께 이름,잔고,이율 수정(update)해줘");
+		accountServiceReturn.updateAccount(3333, "SIM", 56000, 1.2);
+		accountServiceReturn.print();
+		System.out.println("14.AccountServiceReturn객체야 계좌번호줄께 계좌삭제한후 삭제한계좌객체반환해줘[OPTION]");
+		Account deleteAccount=accountServiceReturn.deleteByNo(6666);
+		deleteAccount.print();
+		accountServiceReturn.print();
 		
 	}
 

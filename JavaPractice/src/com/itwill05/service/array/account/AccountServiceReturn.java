@@ -127,28 +127,6 @@ public class AccountServiceReturn {
 
 	}
 
-	/*int count = 0;
-	Account[] findAccounts = null;
-	for (Account account : accounts) {
-		if (account.getBalance() > balance) {
-			count++;
-		}
-		findAccounts = new Account[count];
-	
-		for (int i = 0; i < findAccounts.length; i++) {
-			for (int j = 0; j < accounts.length; j++) {
-				if (accounts[i].getBalance() > balance) {
-					findAccounts[i] = accounts[i];
-				}
-			}
-	
-		}
-		
-	}
-	
-	return findAccounts;
-	}*/
-
 	/*
 	 * B. Account객체배열생성 
 	 * 	- findAccounts=new Account[3];
@@ -190,6 +168,16 @@ public class AccountServiceReturn {
 		/*
 		 * A. 만족하는 객체의갯수구하기 - 예를들어 3개라면
 		 */
+		int count = 0;
+		for (Account account : accounts) {
+			if (account.getOwner().equals(name)) {
+				count++;
+			}
+
+		}
+
+		Account[] findByNameAccounts = new Account[count];
+
 		/*
 		 * B. Account객체배열생성 
 		 * 	- findAccounts=new Account[3];
@@ -197,7 +185,16 @@ public class AccountServiceReturn {
 		/*
 		 * C. 만족하는Account객체들 Account배열에담기
 		 */
-		return null;
+
+		int findcount = 0;
+		for (Account account : accounts) {
+			if (account.getOwner().equals(name)) {
+				findByNameAccounts[findcount] = account;
+				findcount++;
+			}
+		}
+
+		return findByNameAccounts;
 	}
 
 	/*
@@ -254,11 +251,13 @@ public class AccountServiceReturn {
 
 		for (Account account : accounts) {
 			if (account.getNo() == updateAccount.getNo()) {
-				account = updateAccount;
+				/*account.setAccountData(updateAccount.getNo(), updateAccount.getOwner(), 
+						updateAccount.getBalance(), updateAccount.getIyul());*/
+				account=updateAccount;
+
 			}
 
 		}
-
 	}
 
 	/*
@@ -281,11 +280,17 @@ public class AccountServiceReturn {
 	 *  
 	 */
 	public Account deleteByNo(int no) {
-		Account temp = new Account(0, null, 0, 0);
+		Account temp = null;
+		for (Account account : accounts) {
+			if (account.getNo() == no) {
+				temp = account;
+				account = null;
+				break;
+			}
+		}
 		for (int i = 0; i < accounts.length; i++) {
 			if (accounts[i].getNo() == no) {
-				temp.setAccountData(accounts[i].getNo(), accounts[i].getOwner(), accounts[i].getBalance(),
-						accounts[i].getIyul());
+				temp = accounts[i];
 				accounts[i] = null;
 				break;
 			}
