@@ -49,12 +49,12 @@ public class AccountServiceReturnMain {
 	    정렬방법(order)    --> 1:오름차순,2:내림차순
 		 */
 		
-		/*System.out.println("10.AccountServiceReturn객체야 계좌를 잔고순으로 오름차순정렬해줘");
-		accountServiceReturn.sort(3, 1);
+		System.out.println("10.AccountServiceReturn객체야 계좌를 잔고순으로 오름차순정렬해줘");
+		accountServiceReturn.sort(1, 1);
 		accountServiceReturn.print();
 		
 		
-		System.out.println("11.AccountServiceReturn객체야 계좌를 잔고순으로 내림차순정렬해줘");
+		/*System.out.println("11.AccountServiceReturn객체야 계좌를 잔고순으로 내림차순정렬해줘");
 		accountServiceReturn.sort(3, 2);*/
 		System.out.println("12.AccountServiceReturn야 계좌객체줄께 이름,잔고,이율 수정(update)해줘");
 		Account update2 =new Account(3333, "sim", 40000, 2.2);

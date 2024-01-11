@@ -237,13 +237,70 @@ public class AccountServiceReturn {
 
 	}
 
+	public void order(Account a, Account b, int sortType) {
+		if (sortType == SORT_ASC) {
+			for (int i = 0; i < accounts.length; i++) {
+				for (int j = 0; j < accounts.length; j++) {
+					if (a.getNo() < b.getNo()) {
+						Account temp = accounts[j];
+						accounts[j] = accounts[j + 1];
+						accounts[j + 1] = temp;
+
+					}
+				}
+			}
+		}
+
+	}
+
 	/*[option]
 	 * 10,11 정렬  standard --> 1:번호,2:이름,3:잔고,4:이율 
 	 *             order    --> 1:오름차순,2:내림차순
 	 */
 	public void sort(int standard, int order) {
+		switch (standard) {
+		case SORT_BY_NO:
+			this.sortByNo(order);
+			break;
+		case SORT_BY_OWNER:
+			this.sortByOwner(order);
+			break;
+		case SORT_BY_IYUL:
+			this.sortByIyul(order);
+			break;
+		case SORT_BY_BALANCE:
+			this.sortByBalance(order);
+			break;
+
+		}
+
+	}
+	private void sortByBalance(int order) {
+		
+	}
+	private void sortByOwner(int order) {
+	}
+	private void sortByIyul(int order) {
+	}
+	private void sortByNo(int order) {
+		for (int i = 0; i < accounts.length - 1; i++) {
+			for (int j = 0; j < accounts.length - 1 - i; j++) {
+				int compareResult= accounts[j].getNo() - accounts[j + 1].getNo();
+					if (compareResult > 0 && order==SORT_ASC) {
+						Account tempAccount = accounts[j];
+						accounts[j]=accounts[j+1];
+						accounts[j+1]=tempAccount;
+					}else if(compareResult < 0 && order==SORT_DESC){
+						Account tempAccount = accounts[j];
+						accounts[j]=accounts[j+1];
+						accounts[j+1]=tempAccount;
+					}
+			}
+
+		}
 	}
 
+	
 	/*
 	 * 12.계좌객체를 인자로 받아서 이름,잔고,이율 수정(update)[OPTION]
 	 */
@@ -253,7 +310,7 @@ public class AccountServiceReturn {
 			if (account.getNo() == updateAccount.getNo()) {
 				/*account.setAccountData(updateAccount.getNo(), updateAccount.getOwner(), 
 						updateAccount.getBalance(), updateAccount.getIyul());*/
-				account=updateAccount;
+				account = updateAccount;
 
 			}
 

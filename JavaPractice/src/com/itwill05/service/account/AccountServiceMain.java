@@ -35,7 +35,7 @@ public class AccountServiceMain {
 		System.out.println("9.AccountService객체야 계좌번호,출금할돈 인자로줄께 출금해줘");
 		accountService.chulGum(7777, 45000);
 		System.out.println("10.AccountService객체야 계좌를 잔고순으로 오름차순정렬해줘");
-		accountService.sortByBalanceAscending();
+	
 		accountService.print();
 		System.out.println("11.AccountService객체야 계좌를 잔고순으로 내림차순정렬해줘");
 		accountService.sortByBalanceDescending();

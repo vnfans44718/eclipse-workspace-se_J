@@ -1,6 +1,8 @@
 package com.itwill05.service.array.car;
 
 public class CarServiceMain {
+	private static final String Car = null;
+
 	public static void main(String[] args) {
 		CarService carService = new CarService(65);
 
@@ -29,13 +31,20 @@ public class CarServiceMain {
 		System.out.println("4.CarService객체야 차량번호(2322번) 인자로줄께  차객체한대 참조변수반환해줘");
 		Car ac = carService.findByNo("2322");
 		ac.print();
-		
+
 		System.out.println("5.CarService객체야 입차시간(8시이후) 인자로줄께 차객체배열 참조변수반환해줘");
 		Car[] ac1 = carService.findByInTime(8);
-	
+		for (int i = 0; i < ac1.length; i++) {
+			if (ac1[i] instanceof Car) {
+				ac1[i].print();
+			}
+		}
+
 		System.out.println("6.CarService객체야 차량번호(1212번) 출차시간(12시)인자로줄께 출차시켜주고 출차차량참조변수반환해줘");
-		System.out.println(carService.chulCha("1212", 12));
+		Car ac2 = carService.chulCha("1212", 12);
+		ac2.print();
 		carService.print();
+
 	}
 
 }

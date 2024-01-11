@@ -61,10 +61,8 @@ public class AccountServiceArrayList {
 
 				return false;
 
-			} else {
-				accountList.add(account);
-				break;
 			}
+			accountList.add(account);
 
 		}
 		return true;
@@ -208,27 +206,22 @@ public class AccountServiceArrayList {
 	 */
 	public void sortByBalanceAsc() {
 		Account temp = new Account();
-	
 
-		
+		for (int i = 0; i < accountList.size() - 1; i++) {
 
-			for (int j = 0; j < accountList.size() - 1; j++) {
+			for (int j = 0; j < accountList.size() - 1 - i; j++) {
 				if (accountList.get(j).getBalance() < accountList.get(j + 1).getBalance()) {
+					temp = accountList.get(j);
 					accountList.set(j, accountList.get(j + 1));
-					accountList.set(j+1, accountList.get(j));
+					accountList.set(j + 1, temp);
 
 				}
 
 			}
 
-		
+		}
 
 	}
-	
-	
-	
-	
-	
 
 	/*
 	 * 11.계좌를 잔고순으로 내림차순정렬
@@ -261,9 +254,7 @@ public class AccountServiceArrayList {
 		Account account1 = new Account();
 		for (Account account : accountList) {
 			if (account.getNo() == updateAccount.getNo()) {
-				account .setAccountData(updateAccount.getNo(),
-						updateAccount.getOwner(), 
-						updateAccount.getBalance(), 
+				account.setAccountData(updateAccount.getNo(), updateAccount.getOwner(), updateAccount.getBalance(),
 						updateAccount.getIyul());
 				account1 = account;
 				break;
