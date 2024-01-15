@@ -220,20 +220,35 @@ public class StudentServiceHashMap {
 	 */
 	public List<Student> getStudentList() {
 		Iterator<Entry<String, List<Student>>> aa = studentMap.entrySet().iterator();
-
+		List<Student> tempStudent = new ArrayList<Student>();
 		while (aa.hasNext()) {
 			Entry<String, List<Student>> temp = aa.next();
-			List<Student> tempStudent = temp.getValue();
+			for (Student student : temp.getValue()) {
+				tempStudent.add(student);
+			}
 
 		}
-		return null;
+
+		return tempStudent;
 	}
 
 	/*
 	 * 9.전체학생중 A(B,C)반학생반환
 	 */
-	public List<Student> getBanStudentList() {
-		return null;
+	public List<Student> getBanStudentList(String ban) {
+		Iterator<Entry<String, List<Student>>> aa = studentMap.entrySet().iterator();
+		List<Student> tempStudent = new ArrayList<Student>();
+		while (aa.hasNext()) {
+			Entry<String, List<Student>> temp = aa.next();
+			if (temp.getKey().equals(ban)) {
+				for (Student student : temp.getValue()) {
+					tempStudent.add(student);
+				}
+			}
+
+		}
+
+		return tempStudent;
 	}
 
 	/*
@@ -241,6 +256,20 @@ public class StudentServiceHashMap {
 	 */
 	public Student findByStudent(String ban, int no) {
 		Student findStudent = null;
+		Iterator<Entry<String, List<Student>>> aa = studentMap.entrySet().iterator();
+		while (aa.hasNext()) {
+			Entry<String, List<Student>> temp = aa.next();
+			if (temp.getKey().equals(ban)) {
+				for (Student student : temp.getValue()) {
+					if (student.getNo() == 3) {
+						findStudent = student;
+					}
+
+				}
+
+			}
+
+		}
 
 		return findStudent;
 	}
@@ -249,7 +278,22 @@ public class StudentServiceHashMap {
 	 * 11.전체학생중 학점A인 학생들 반환(List)
 	 */
 	public List<Student> findByGrade(char grade) {
+		// ArrayList<Student> findStudents = new ArrayList<Student>();
+
+		// return findStudents;
+
+		Iterator<Entry<String, List<Student>>> aa = studentMap.entrySet().iterator();
 		ArrayList<Student> findStudents = new ArrayList<Student>();
+		while (aa.hasNext()) {
+			Entry<String, List<Student>> temp = aa.next();
+			for (Student student : temp.getValue()) {
+				if (student.getGrade() == grade) {
+					findStudents.add(student);
+				}
+
+			}
+
+		}
 
 		return findStudents;
 	}
@@ -257,8 +301,23 @@ public class StudentServiceHashMap {
 	/*
 	 * 11.전체학생중 학점A인 학생들  반별맵으로반환(Map)
 	 */
-	public Map<String, List<Student>> findByGradeByMap(char grade) {
+	public Map<String, List<Student>> findByGradeByMap(String ban, char grade) {
 		Map<String, List<Student>> findStudentMap = new HashMap<String, List<Student>>();
+
+		Iterator<Entry<String, List<Student>>> aa = studentMap.entrySet().iterator();
+		List<Student> findStudents = new ArrayList<Student>();
+		while (aa.hasNext()) {
+			Entry<String, List<Student>> temp = aa.next();
+			for (Student student : temp.getValue()) {
+				if (student.getBan().equals(ban) && student.getGrade() == grade) {
+					findStudents.add(student);
+				}
+
+			}
+			findStudentMap.put(ban, findStudents);
+
+		}
+
 		return findStudentMap;
 	}
 
@@ -267,6 +326,18 @@ public class StudentServiceHashMap {
 	 */
 	public List<Student> findByBanGrade(String ban, char grade) {
 		ArrayList<Student> findStudents = new ArrayList<Student>();
+
+		Iterator<Entry<String, List<Student>>> aa = studentMap.entrySet().iterator();
+		while (aa.hasNext()) {
+			Entry<String, List<Student>> temp = aa.next();
+			for (Student student : temp.getValue()) {
+				if (student.getBan().equals(ban) && student.getGrade() == grade) {
+					findStudents.add(student);
+				}
+
+			}
+
+		}
 
 		return findStudents;
 	}
@@ -277,6 +348,18 @@ public class StudentServiceHashMap {
 	public List<Student> findByName(String name) {
 		ArrayList<Student> findStudents = new ArrayList<Student>();
 
+		Iterator<Entry<String, List<Student>>> aa = studentMap.entrySet().iterator();
+		while (aa.hasNext()) {
+			Entry<String, List<Student>> temp = aa.next();
+			for (Student student : temp.getValue()) {
+				if (student.getName().equals(name)) {
+					findStudents.add(student);
+				}
+
+			}
+
+		}
+
 		return findStudents;
 	}
 
@@ -285,6 +368,22 @@ public class StudentServiceHashMap {
 	 */
 	public Map<String, List<Student>> findByNameByMap(String name) {
 		Map<String, List<Student>> findStudentMap = new HashMap<String, List<Student>>();
+
+		Iterator<Entry<String, List<Student>>> aa = studentMap.entrySet().iterator();
+		List<Student> findStudents = new ArrayList<Student>();
+		while (aa.hasNext()) {
+			Entry<String, List<Student>> temp = aa.next();
+			String tempKey = temp.getKey();
+			for (Student student : temp.getValue()) {
+				if (student.getBan().equals(tempKey) && student.getName().equals(name)) {
+					findStudents.add(student);
+				}
+
+			}
+			findStudentMap.put(tempKey, findStudents);
+
+		}
+
 		return findStudentMap;
 	}
 
@@ -292,8 +391,22 @@ public class StudentServiceHashMap {
 	 * 14.  A(B,C)반 이름KIM 학생들 반환
 	 */
 	public List<Student> findByBanName(String ban, String name) {
+		
 		List<Student> findStudents = new ArrayList<Student>();
+		Iterator<Entry<String, List<Student>>> aa = studentMap.entrySet().iterator();
+		while (aa.hasNext()) {
+			Entry<String, List<Student>> temp = aa.next();
+			for (Student student : temp.getValue()) {
+				if (student.getBan().equals(ban) && student.getName().equals(name)) {
+					findStudents.add(student);
+				}
 
+			}
+
+		}
+
+		
+		
 		return findStudents;
 	}
 
