@@ -87,54 +87,58 @@ public class StudentServiceHashMapMain {
 			studentesA.get(i).print();
 
 		}
-
+		System.out.println("11.전체학생중 학점A인 학생들 반별맵으로반환(Map)");
 		// * 11.전체학생중 학점A인 학생들 반별맵으로반환(Map)
-		Map<String, List<Student>> studentesAMap = studentServiceHashMap.findByGradeByMap("A", 'A');
+		Map<String, List<Student>> studentesAMap = studentServiceHashMap.findByGradeByMap('A');
 		for (String ban : studentesAMap.keySet()) {
 			System.out.println("---------------" + ban + " 반-------------------");
 
 			List<Student> studentBanList = studentesAMap.get(ban);
 			for (Student student : studentBanList) {
-				student.print();
+				if (student.getBan().equals(ban)) {
+					student.print();
+				}
+				
 			}
 		}
-
-		 //* 12.A(B,C)반 학점A인 학생들 반환
-		List<Student> studentesABan = studentServiceHashMap.findByBanGrade("A", 'A');
+System.out.println("12.A(B,C)반 학점A인 학생들 반환");
+		// * 12.A(B,C)반 학점A인 학생들 반환
+		List<Student> studentesABan = studentServiceHashMap.findByBanGrade("A",'A');
 		for (int i = 0; i < studentesABan.size(); i++) {
 
 			studentesABan.get(i).print();
 
 		}
-		
-		//13.전체학생중 이름KIM 학생들 반환(List)
+		System.out.println("13.전체학생중 이름KIM 학생들 반환(List)");
+		// 13.전체학생중 이름KIM 학생들 반환(List)
 		List<Student> studentesfindByName = studentServiceHashMap.findByName("KIM");
 		for (int i = 0; i < studentesfindByName.size(); i++) {
 
 			studentesfindByName.get(i).print();
 
 		}
-		
+
 		System.out.println("13.전체학생중 이름KIM 학생들 반별맵으로반환(Map)");
-		 //13.전체학생중 이름KIM 학생들 반별맵으로반환(Map)
+		// 13.전체학생중 이름KIM 학생들 반별맵으로반환(Map)
 		Map<String, List<Student>> findByNameByMap1 = studentServiceHashMap.findByNameByMap("KIM");
 		for (String ban : findByNameByMap1.keySet()) {
 			System.out.println("---------------" + ban + " 반-------------------");
 
 			List<Student> studentBanList = findByNameByMap1.get(ban);
 			for (Student student : studentBanList) {
-				student.print();
+				if (student.getBan().equals(ban)) {
+					student.print();
+				}
 			}
+
 		}
-		
+System.out.println("A(B,C)반 이름KIM 학생들 반환");
 		List<Student> findByBanName2 = studentServiceHashMap.findByBanName("A", "KIM");
 		for (int i = 0; i < findByBanName2.size(); i++) {
 
 			findByBanName2.get(i).print();
 
 		}
-		
-		
-		
+
 	}
 }
